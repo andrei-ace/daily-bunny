@@ -1,0 +1,25 @@
+{
+  "name": "daily-bunny",
+  "version": "1.0.1",
+  "description": "",
+  "scripts": {
+    "image": "ts-node src/create-image.ts",
+    "site": "ts-node src/create-site.ts",
+    "docker": "docker buildx build --platform linux/amd64 . -t registry.bender-cloud.net:5000/daily-bunny:1.0.1",
+    "docker:push": "docker push registry.bender-cloud.net:5000/daily-bunny:1.0.1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@types/node-fetch": "^2.6.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "mongoose": "^7.0.3",
+    "node-fetch": "^2.6.9",
+    "openai": "^3.2.1"
+  }
+}
