@@ -46,63 +46,60 @@ async function main() {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Daily Bunny</title>
       <style>
-        html, body {
-          height: 100%;
-          margin: 0;
-          padding: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          background-color: #f0f0f0;
-        }
-        .image-container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          max-width: 1024px;
-        }
-        img {
-          max-width: 100%;
-          max-height: 1024px;
-          height: auto;
-          display: block;
-        }
+      html, body {
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #f0f0f0;
+      }
+      .image-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 85vh;
+        padding: 0 10px;
+        box-sizing: border-box;
+      }
+      .nav-links {
+        margin-bottom: 15px;
+      }
+      img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: scale-down;
+      }
+      p {
+        margin: 15px 0;
+        font-size: 16px;
+        width: 65%;
+        box-sizing: border-box;
+      }
+      a {
+        text-decoration: none;
+        font-weight: bold;
+        color: #007bff;
+        margin: 0 10px;
+        padding: 5px;
+        border-radius: 3px;
+      }
+      a:hover {
+        background-color: #007bff;
+        color: white;
+      }
+      .disabled {
+        pointer-events: none;
+        color: #6699cc;
+      }
+      @media screen and (max-width: 800px) {
         p {
-          margin: 15px 0;
-          font-size: 16px;
-          width: 100%;
-          box-sizing: border-box;
+          width: 90%;
         }
-        .nav-links {
-          margin-top: 15px;
-        }
-        a {
-          text-decoration: none;
-          font-weight: bold;
-          color: #007bff;
-          margin: 0 10px;
-          padding: 5px;
-          border-radius: 3px;
-        }
-        a:hover {
-          background-color: #007bff;
-          color: white;
-        }
-        .disabled {
-          pointer-events: none;
-          color: #6699cc;
-        }
-    
-        @media screen and (max-width: 480px) {
-          a {
-            font-size: 14px;
-          }
-          .nav-links {
-            margin-top: 10px;
-          }
-        }
+      }
       </style>
     </head>
     <body>
