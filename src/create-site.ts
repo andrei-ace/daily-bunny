@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv';
 import { connectToDatabase, insertData, getDataSortedByDate, IGeneratedImageData } from './db';
 import * as fs from 'fs/promises'
 import * as path from 'path';
+import { escape } from 'html-escaper';
 
 dotenv.config({path: path.resolve(__dirname,'../config/.env')});
 
@@ -55,10 +56,24 @@ async function main() {
           justify-content: center;
           background-color: #f0f0f0;
         }
+        .image-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          max-width: 1024px;
+        }
         img {
           max-width: 100%;
           max-height: 1024px;
           height: auto;
+          display: block;
+        }
+        p {
+          margin: 15px 0;
+          font-size: 16px;
+          width: 100%;
+          box-sizing: border-box;
         }
         .nav-links {
           margin-top: 15px;
@@ -91,11 +106,14 @@ async function main() {
       </style>
     </head>
     <body>
-    <img src="${path.basename(imageData.imagePath)}" alt="${imageData.description}"/>
-    <div class="nav-links">
-      <a href="${prevFileName || ''}" ${prevFileName ? "" : 'class="disabled"'}>&larr; Prev</a>
-      <a href="${nextFileName || ''}" ${nextFileName ? "" : 'class="disabled"'}>Next &rarr;</a>
-    </div>
+      <div class="image-container">
+        <img src="${path.basename(imageData.imagePath)}" alt="${escape(imageData.description)}"/>
+        <p>${escape(imageData.description)}</p>
+      </div>
+      <div class="nav-links">
+        <a href="${prevFileName || ''}" ${prevFileName ? "" : 'class="disabled"'}>&larr; Prev</a>
+        <a href="${nextFileName || ''}" ${nextFileName ? "" : 'class="disabled"'}>Next &rarr;</a>
+      </div>
     </body>
     </html>`;
 
