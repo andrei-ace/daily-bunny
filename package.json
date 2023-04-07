@@ -5,7 +5,7 @@
   "scripts": {
     "image": "ts-node src/create-image.ts",
     "site": "ts-node src/create-site.ts",
-    "docker": "docker buildx build --platform linux/amd64 . -t registry.bender-cloud.net:5000/daily-bunny:1.0.1",
+    "docker": "docker build --platform linux/amd64 . -t registry.bender-cloud.net:5000/daily-bunny:1.0.1",
     "docker:push": "docker push registry.bender-cloud.net:5000/daily-bunny:1.0.1"
   },
   "author": "",
