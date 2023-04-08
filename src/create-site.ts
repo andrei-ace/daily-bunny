@@ -53,7 +53,7 @@ async function main() {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: space-between;
         background-color: #f0f0f0;
       }
       .image-container {
@@ -66,7 +66,7 @@ async function main() {
         object-fit: scale-down;
       }
       .nav-links {
-        margin-top: 15px;
+        margin-bottom: 15px;
       }
       img {
         max-width: 100%;
@@ -96,6 +96,13 @@ async function main() {
         color: #6699cc;
       }
       @media screen and (max-width: 800px) {
+        html, body {
+          justify-content: flex-start;
+        }
+        .nav-links {
+          margin-bottom: 0px;
+          margin-top: 15px;
+        }
         p {
           width: 90%;
         }

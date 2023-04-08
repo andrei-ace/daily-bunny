@@ -31,8 +31,9 @@ async function generatePrompt(): Promise<string> {
   const promptResponse = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',
     messages: [
-      { role: 'system', content: 'You are ChatGPT, a large language model trained by OpenAI. Answer as concisely as possible.' },
-      { role: 'user', content: 'Generate an interesting image description for today. It should be linked with a "sweet bunny". It should be in the style of a famous painter.' },
+      { role: 'user', content: 'Compose a captivating image description for today, '+
+      'featuring a "sweet bunny" and inspired by a renowned artist\'s style. '+
+      'Keep it brief and vary the painter daily.' },
     ],
   });
 
