@@ -53,7 +53,7 @@ async function main() {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
         background-color: #f0f0f0;
       }
       .image-container {
@@ -61,16 +61,16 @@ async function main() {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 85vh;
         padding: 0 10px;
         box-sizing: border-box;
+        object-fit: scale-down;
       }
       .nav-links {
-        margin-bottom: 15px;
+        margin-top: 15px;
       }
       img {
-        max-height: 100%;
         max-width: 100%;
+        max-height: 70vh;
         object-fit: scale-down;
       }
       p {

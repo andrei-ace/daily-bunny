@@ -1,12 +1,12 @@
 {
   "name": "daily-bunny",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "",
   "scripts": {
     "image": "ts-node src/create-image.ts",
     "site": "ts-node src/create-site.ts",
-    "docker": "docker build --platform linux/amd64 . -t registry.bender-cloud.net:5000/daily-bunny:1.0.3",
-    "docker:push": "docker push registry.bender-cloud.net:5000/daily-bunny:1.0.3"
+    "docker": "docker build --platform linux/amd64 . -t registry.bender-cloud.net:5000/daily-bunny:$npm_package_version",
+    "docker:push": "docker push registry.bender-cloud.net:5000/daily-bunny:$npm_package_version"
   },
   "author": "",
   "license": "ISC",
