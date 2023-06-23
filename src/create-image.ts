@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import { Configuration, OpenAIApi } from 'openai';
-import { connectToDatabase, insertData, getDataSortedByDate, IGeneratedImageData } from './db';
+import { connectToDatabase, insertData, getDataSortedByDate } from './db';
 
 import * as fs from 'fs';
 import * as fetch from 'node-fetch';
@@ -32,8 +32,8 @@ async function generatePrompt(): Promise<string> {
     model: 'gpt-3.5-turbo',
     messages: [
       { role: 'user', content: 'Compose a captivating image description for today, '+
-      'featuring a "sweet bunny" and inspired by a renowned artist\'s style. '+
-      'Keep it brief and vary the painter daily.' },
+            'featuring a "sweet bunny" and inspired by an art movement. '+
+            'Keep it brief and vary the movement daily.' },
     ],
   });
 

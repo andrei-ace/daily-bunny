@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-import { connectToDatabase, insertData, getDataSortedByDate, IGeneratedImageData } from './db';
+import { connectToDatabase, getDataSortedByDate, IGeneratedImageData } from './db';
 import * as fs from 'fs/promises'
 import * as path from 'path';
 import { escape } from 'html-escaper';
@@ -53,7 +53,7 @@ async function main() {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
         background-color: #f0f0f0;
       }
       .image-container {
@@ -66,7 +66,7 @@ async function main() {
         object-fit: scale-down;
       }
       .nav-links {
-        margin-bottom: 15px;
+        margin-top: 15px;
       }
       img {
         max-width: 100%;
@@ -78,6 +78,7 @@ async function main() {
         font-size: 16px;
         width: 65%;
         box-sizing: border-box;
+        min-height: 10vh;
       }
       a {
         text-decoration: none;
@@ -96,13 +97,6 @@ async function main() {
         color: #6699cc;
       }
       @media screen and (max-width: 800px) {
-        html, body {
-          justify-content: flex-start;
-        }
-        .nav-links {
-          margin-bottom: 0px;
-          margin-top: 15px;
-        }
         p {
           width: 90%;
         }
