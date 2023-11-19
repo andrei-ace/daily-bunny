@@ -20,7 +20,7 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "html-escaper": "^3.0.3",
-    "mongoose": "^7.3.3",
+    "mongoose": "^7.6.5",
     "node-fetch": "^2.6.9",
     "openai": "^4.19.0"
   }
