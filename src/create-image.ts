@@ -6,7 +6,7 @@ import * as fs from 'fs';
 import * as fetch from 'node-fetch';
 import * as path from 'path';
 
-dotenv.config({path: path.resolve(__dirname,'../config/.env')});
+dotenv.config({ path: path.resolve(__dirname, '../config/.env') });
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -31,9 +31,11 @@ async function generatePrompt(): Promise<string> {
   const promptResponse = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',
     messages: [
-      { role: 'user', content: 'Compose a captivating image description for today, '+
-            'featuring a "sweet bunny" and inspired by an art movement. '+
-            'Keep it brief and vary the movement daily.' },
+      {
+        role: 'user', content: 'Compose a captivating image description for today, ' +
+          'featuring a "sweet bunny" and inspired by an art movement. ' +
+          'Keep it brief and vary the movement daily.'
+      },
     ],
   });
 
@@ -74,31 +76,33 @@ async function downloadImage(imageUrl: string, imagePath: string): Promise<void>
 async function main() {
   // Connect to the database
   const db = await connectToDatabase(process.env.MONGODB_URI!);
+  try {
 
-  const prompt = await withRetry(generatePrompt);
-  console.log('Generated prompt:', prompt);
-  const generatedDate = new Date();
+    const prompt = await withRetry(generatePrompt);
+    console.log('Generated prompt:', prompt);
+    const generatedDate = new Date();
 
-  const imageUrl = await withRetry(() => generateImage(prompt));
-  console.log('Generated image URL:', imageUrl);
+    const imageUrl = await withRetry(() => generateImage(prompt));
+    console.log('Generated image URL:', imageUrl);
 
-  const imagePath = path.resolve(process.env.IMAGE_DIR!, generatedDate.toISOString() + '.png');
-  fs.mkdirSync(path.dirname(imagePath), { recursive: true });
+    const imagePath = path.resolve(process.env.IMAGE_DIR!, generatedDate.toISOString() + '.png');
+    fs.mkdirSync(path.dirname(imagePath), { recursive: true });
 
-  await downloadImage(imageUrl, imagePath);
-  console.log('Image downloaded to:', imagePath);
+    await downloadImage(imageUrl, imagePath);
+    console.log('Image downloaded to:', imagePath);
 
-  const relativePath = imagePath.replace(process.env.PWD!, "");
-  // Insert the generated image data into the database
-  const generatedImageData = await insertData(imageUrl, relativePath, prompt, generatedDate);
-  console.log('Generated image data saved to database:', generatedImageData);
+    const relativePath = imagePath.replace(process.env.PWD!, "");
+    // Insert the generated image data into the database
+    const generatedImageData = await insertData(imageUrl, relativePath, prompt, generatedDate);
+    console.log('Generated image data saved to database:', generatedImageData);
 
-  // Retrieve the data sorted by date (newest first)
-  const imageDataList = await getDataSortedByDate();
-  console.log('Image data sorted by date (newest first):', imageDataList);
-
-  await db.disconnect()
-
+    // Retrieve the data sorted by date (newest first)
+    const imageDataList = await getDataSortedByDate();
+    console.log('Image data sorted by date (newest first):', imageDataList);
+  }
+  finally {
+    await db.disconnect()
+  }
 }
 
 main().catch((error) => console.error('An error occurred:', error));
